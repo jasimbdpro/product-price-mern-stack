@@ -1,2 +1,2 @@
-## Product Price Very Basic MERN Stack Project.
-# MERN Stack is used to create the frontend and backend
+# Product Price MERN Stack Project (Very Basic )
+## MERN Stack is used to create the frontend and backend
