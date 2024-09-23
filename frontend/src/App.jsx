@@ -11,7 +11,7 @@ function App() {
   // Post Data
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = "http://localhost:3000/";
+    const url = "https://product-price-mern-stack.vercel.app/";
     const postData = async (url, formData) => {
       try {
         const response = await fetch(url, {
@@ -36,7 +36,7 @@ function App() {
   // Get Data
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/");
+      const response = await fetch("https://product-price-mern-stack.vercel.app/");
       if (!response.ok) {
         throw new Error(`HTTP Error, Status Code: ${response.status}`);
       }
@@ -61,7 +61,7 @@ function App() {
   // Handle Update
   const handleUpdate = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/${id}`, {
+      const response = await fetch(`https://product-price-mern-stack.vercel.app/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ function App() {
     const confirmDelete = window.confirm("Are you sure you want to delete this product?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:3000/${id}`, {
+        const response = await fetch(`https://product-price-mern-stack.vercel.app/${id}`, {
           method: 'DELETE',
         });
 
