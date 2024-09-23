@@ -130,7 +130,7 @@ function App() {
         <tbody>
           {gotData.map((row) => (
             <tr key={row.id}>
-              <td><Link to={'/'}>{row.id}</Link></td>
+              <td>{row.id}</td>
               <td>{row.product}</td>
               <td>{row.price}</td>
               <td>
