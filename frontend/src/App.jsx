@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [formData, setFormData] = useState({ product: '', price: '' });
   const [gotData, setGotData] = useState([]);
+  console.log(gotData)
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
   const [editedName, setEditedName] = useState('');
   const [editedPrice, setEditedPrice] = useState('');
@@ -40,7 +41,7 @@ function App() {
         throw new Error(`HTTP Error, Status Code: ${response.status}`);
       }
       const getResult = await response.json();
-      setGotData(getResult);
+      setGotData(getResult && getResult.data);
     } catch (error) {
       console.error("Found Error: ", error);
     }
@@ -128,10 +129,10 @@ function App() {
         </thead>
         <tbody>
           {gotData.map((row) => (
-            <tr key={row.id}>
-              <td>{row.id}</td>
-              <td>{row.product}</td>
-              <td>{row.price}</td>
+            <tr key={row._id}>
+              <td>{row?._id}</td>
+              <td>{row?.productName}</td>
+              <td>{row?.price}</td>
               <td>
                 <button onClick={() => handleEditClick(row)}>Edit</button> {/* Edit button */}
                 <button onClick={() => handleDelete(row.id)}>Delete</button> {/* Delete button */}
