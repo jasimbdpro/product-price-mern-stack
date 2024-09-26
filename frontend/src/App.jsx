@@ -121,18 +121,20 @@ function App() {
       <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
-            <th>ID</th>
+
             <th>Product Name</th>
             <th>Price</th>
+            <th>ID</th>
             <th>Actions</th> {/* Actions column for editing and deleting */}
           </tr>
         </thead>
         <tbody>
           {gotData.map((row) => (
             <tr key={row._id}>
-              <td>{row?._id}</td>
+
               <td>{row?.productName}</td>
               <td>{row?.price}</td>
+              <td>{row?._id}</td>
               <td>
                 <button onClick={() => handleEditClick(row)}>Edit</button> {/* Edit button */}
                 <button onClick={() => handleDelete(row.id)}>Delete</button> {/* Delete button */}
