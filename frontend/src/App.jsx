@@ -2,15 +2,10 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [formData, setFormData] = useState({ productName: '', price: '' });
-  // console.log("formData", formData)
   const [gotData, setGotData] = useState([]);
-  // console.log("gotData", gotData)
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
-  // console.log("editedProduct", editProduct)
   const [editedName, setEditedName] = useState('');
-  // console.log("editedName", editedName)
   const [editedPrice, setEditedPrice] = useState('');
-  // console.log("editedPrice", editedPrice)
   const [visible, setVisible] = useState(false);
 
   // Post Data
@@ -70,7 +65,6 @@ function App() {
   // Handle Update
   const handleUpdate = async (id) => {
     try {
-      console.log(id)
       const response = await fetch(`https://product-price-mern-stack.onrender.com/${id}`, {
 
         method: 'PUT',
