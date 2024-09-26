@@ -24,9 +24,6 @@ const userSchema = new mongoose.Schema({
 })
 const UserModel = mongoose.model('collection-2', userSchema)
 
-let productData = [];
-let nextId = 1;
-
 app.post('/', async (req, res) => {
     const { productName, price } = req.body; // Adjust these fields based on your user model
 
@@ -44,7 +41,13 @@ app.post('/', async (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-    res.status(200).send(productData)
+    try {
+        const userData = await UserModel.find({});
+        res.json({ "rules": "Use This Route to handle single data: /findusers/:id", "data": userData });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).send("Error fetching data");
+    }
 })
 
 app.get('/:id', async (req, res) => {
@@ -82,7 +85,6 @@ app.delete('/:id', async (req, res) => {
         if (!product) {
             res.status(404).json({ message: 'Product not found' })
         }
-        productData.splice(index, 1)
         res.status(200).send("Successfully Deleted")
     } catch (error) {
         res.status(500).json({ message: 'Error deleting product', error });
