@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [formData, setFormData] = useState({ product: '', price: '' });
+  const [formData, setFormData] = useState({ productName: '', price: '' });
   const [gotData, setGotData] = useState([]);
   console.log(gotData)
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
