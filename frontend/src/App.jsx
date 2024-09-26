@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [formData, setFormData] = useState({ productName: '', price: '' });
-  console.log(formData)
+  // console.log("formData", formData)
   const [gotData, setGotData] = useState([]);
-  console.log(gotData)
+  // console.log("gotData", gotData)
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
+  // console.log("editedProduct", editProduct)
   const [editedName, setEditedName] = useState('');
+  // console.log("editedName", editedName)
   const [editedPrice, setEditedPrice] = useState('');
+  // console.log("editedPrice", editedPrice)
 
   // Post Data
   const handleSubmit = (e) => {
@@ -55,19 +58,21 @@ function App() {
   // Handle Edit Button Click
   const handleEditClick = (product) => {
     setEditProduct(product);
-    setEditedName(product.product);
+    setEditedName(product.productName);
     setEditedPrice(product.price);
   };
 
   // Handle Update
   const handleUpdate = async (id) => {
     try {
-      const response = await fetch(`https://product-price-mern-stack.onrender.com/${id}`, {
+      console.log(editProduct._id)
+      const response = await fetch(`https://product-price-mern-stack.onrender.com/${editProduct._id}`, {
+
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ product: editedName, price: editedPrice }),
+        body: JSON.stringify({ productName: editedName, price: editedPrice }),
       });
 
       if (response.ok) {
@@ -130,15 +135,16 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {gotData.map((row) => (
-            <tr key={row._id}>
+          {gotData.map((product) => (
+            <tr key={product._id}>
 
-              <td>{row?.productName}</td>
-              <td>{row?.price}</td>
-              <td>{row?._id}</td>
+              <td>{product?.productName}</td>
+              <td>{product?.price}</td>
+              <td>{product?._id}</td>
               <td>
-                <button onClick={() => handleEditClick(row)}>Edit</button> {/* Edit button */}
-                <button onClick={() => handleDelete(row.id)}>Delete</button> {/* Delete button */}
+
+                <button onClick={() => handleEditClick(product)}>Edit</button> {/* Edit button */}
+                <button onClick={() => handleDelete(product?._id)}>Delete</button> {/* Delete button */}
               </td>
             </tr>
           ))}
@@ -167,7 +173,7 @@ function App() {
             />
           </label>
           <br />
-          <button onClick={() => handleUpdate(editProduct.id)}>Update</button>
+          <button onClick={() => handleUpdate(editProduct._id)}>Update</button>
           <button onClick={() => setEditProduct(null)}>Cancel</button>  {/* Close modal */}
         </div>
       )}

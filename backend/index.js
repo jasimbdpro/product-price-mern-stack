@@ -62,6 +62,7 @@ app.get('/:id', async (req, res) => {
 
 app.put('/:id', async (req, res) => {
     try {
+        const { productName, price } = req.body;
         const product = await ProductModel.findByIdAndUpdate(req.params.id,
             { productName, price },
             { new: true, runValidators: true }
