@@ -18,18 +18,18 @@ mongoose
         console.log("Connected to DB")
     })
 
-const userSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     productName: String,
     price: Number,
 })
-const UserModel = mongoose.model('collection-2', userSchema)
+const ProductModel = mongoose.model('collection-2', productSchema)
 
 app.post('/', async (req, res) => {
     const { productName, price } = req.body; // Adjust these fields based on your user model
 
     try {
         // Create a new user instance
-        const newProduct = new UserModel({ productName, price });
+        const newProduct = new ProductModel({ productName, price });
 
         // Save the user to the database
         await newProduct.save();
@@ -42,8 +42,8 @@ app.post('/', async (req, res) => {
 
 app.get('/', async (req, res) => {
     try {
-        const userData = await UserModel.find({});
-        res.json({ "rules": "Use This Route to handle single data: /findusers/:id", "data": userData });
+        const productData = await ProductModel.find({});
+        res.json({ "rules": "Use This Route to handle single data: /:id", "data": productData });
     } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).send("Error fetching data");
@@ -51,7 +51,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/:id', async (req, res) => {
-    const product = await UserModel.findById(req.params.id);
+    const product = await ProductModel.findById(req.params.id);
 
     if (!product) {
         res.status(404).send('Product is not found')
@@ -62,7 +62,7 @@ app.get('/:id', async (req, res) => {
 
 app.put('/:id', async (req, res) => {
     try {
-        const product = await UserModel.findByIdAndUpdate(req.params.id,
+        const product = await ProductModel.findByIdAndUpdate(req.params.id,
             { productName, price },
             { new: true, runValidators: true }
         );
@@ -80,7 +80,7 @@ app.put('/:id', async (req, res) => {
 
 app.delete('/:id', async (req, res) => {
     try {
-        const product = await UserModel.findByIdAndDelete(req.params.id);
+        const product = await ProductModel.findByIdAndDelete(req.params.id);
 
         if (!product) {
             res.status(404).json({ message: 'Product not found' })
