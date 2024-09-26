@@ -43,7 +43,7 @@ app.post('/', async (req, res) => {
 app.get('/', async (req, res) => {
     try {
         const productData = await ProductModel.find({});
-        res.json({ "rules": "Use This Route to handle single data: /:id", "data": productData });
+        res.status(200).json(productData);
     } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).send("Error fetching data");
