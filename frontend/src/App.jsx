@@ -65,8 +65,8 @@ function App() {
   // Handle Update
   const handleUpdate = async (id) => {
     try {
-      console.log(editProduct._id)
-      const response = await fetch(`https://product-price-mern-stack.onrender.com/${editProduct._id}`, {
+      console.log(id)
+      const response = await fetch(`https://product-price-mern-stack.onrender.com/${id}`, {
 
         method: 'PUT',
         headers: {
