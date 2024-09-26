@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [formData, setFormData] = useState({ productName: '', price: '' });
+  console.log(formData)
   const [gotData, setGotData] = useState([]);
   console.log(gotData)
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
@@ -110,7 +111,7 @@ function App() {
 
       <form onSubmit={handleSubmit}>
         <label>Product Name:
-          <input type="text" placeholder='Any Text' onChange={(e) => setFormData({ ...formData, product: e.target.value })} />
+          <input type="text" placeholder='Any Text' onChange={(e) => setFormData({ ...formData, productName: e.target.value })} />
         </label> &nbsp;
         <label> Price:
           <input type="number" placeholder='Number Only' onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
