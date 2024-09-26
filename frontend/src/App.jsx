@@ -41,7 +41,7 @@ function App() {
         throw new Error(`HTTP Error, Status Code: ${response.status}`);
       }
       const getResult = await response.json();
-      setGotData(getResult && getResult.data);
+      setGotData(getResult && getResult);
     } catch (error) {
       console.error("Found Error: ", error);
     }
