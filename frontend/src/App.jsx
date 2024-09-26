@@ -110,10 +110,10 @@ function App() {
 
       <form onSubmit={handleSubmit}>
         <label>Product Name:
-          <input type="text" onChange={(e) => setFormData({ ...formData, product: e.target.value })} />
+          <input type="text" placeholder='Any Text' onChange={(e) => setFormData({ ...formData, product: e.target.value })} />
         </label> &nbsp;
         <label> Price:
-          <input type="number" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
+          <input type="number" placeholder='Number Only' onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
         </label> &nbsp;
         <button type="submit">Submit</button>
       </form>
@@ -124,7 +124,7 @@ function App() {
             <th>ID</th>
             <th>Product Name</th>
             <th>Price</th>
-            <th>Actions</th>  {/* Actions column for editing and deleting */}
+            <th>Actions</th> {/* Actions column for editing and deleting */}
           </tr>
         </thead>
         <tbody>
@@ -134,13 +134,14 @@ function App() {
               <td>{row.product}</td>
               <td>{row.price}</td>
               <td>
-                <button onClick={() => handleEditClick(row)}>Edit</button>  {/* Edit button */}
-                <button onClick={() => handleDelete(row.id)}>Delete</button>  {/* Delete button */}
+                <button onClick={() => handleEditClick(row)}>Edit</button> {/* Edit button */}
+                <button onClick={() => handleDelete(row.id)}>Delete</button> {/* Delete button */}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
 
       {editProduct && (  // Modal for editing
         <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', border: '1px solid black' }}>
