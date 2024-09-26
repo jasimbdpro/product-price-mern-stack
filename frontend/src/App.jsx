@@ -11,6 +11,7 @@ function App() {
   // console.log("editedName", editedName)
   const [editedPrice, setEditedPrice] = useState('');
   // console.log("editedPrice", editedPrice)
+  const [visible, setVisible] = useState(false);
 
   // Post Data
   const handleSubmit = (e) => {
@@ -28,6 +29,10 @@ function App() {
         if (!response.ok) {
           throw new Error(`HTTP Error, Status Code: ${response.status}`);
         }
+        setVisible(true)
+        setTimeout(() => {
+          setVisible(false);
+        }, 1000);
         await response.json();
         fetchData();  // Refresh the data after posting
       } catch (error) {
@@ -113,7 +118,7 @@ function App() {
   return (
     <>
       <h2>Product and Price App</h2>
-
+      <h4 style={{ color: 'gray' }}>Kindly list your product name and price to the database:</h4>
       <form onSubmit={handleSubmit}>
         <label>Product Name:
           <input type="text" placeholder='Any Text' onChange={(e) => setFormData({ ...formData, productName: e.target.value })} />
@@ -123,6 +128,9 @@ function App() {
         </label> &nbsp;
         <button type="submit">Submit</button>
       </form>
+      <br />
+      {visible && <div style={{ color: 'green' }}>Data saved to <b>MongoDB!</b></div>}
+
       <br /> <br />
       <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
