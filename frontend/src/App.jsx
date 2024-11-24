@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
+import filter from 'leo-profanity'
+import bannedWords from './banned-words.js';
 
 function App() {
+
+  filter.addDictionary('bn', bannedWords)
+
+
   const [formData, setFormData] = useState({ productName: '', price: '' });
   const [gotData, setGotData] = useState([]);
   const [editProduct, setEditProduct] = useState(null);  // For managing the product to edit
   const [editedName, setEditedName] = useState('');
   const [editedPrice, setEditedPrice] = useState('');
   const [visible, setVisible] = useState(false);
+
+
 
   // Post Data
   const handleSubmit = (e) => {
@@ -140,7 +148,7 @@ function App() {
           {gotData.map((product) => (
             <tr key={product._id}>
 
-              <td>{product?.productName}</td>
+              <td>{filter.clean(product?.productName)}</td>
               <td>{product?.price}</td>
               <td>{product?._id}</td>
               <td>
@@ -152,7 +160,6 @@ function App() {
           ))}
         </tbody>
       </table>
-
 
       {editProduct && (  // Modal for editing
         <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', border: '1px solid black' }}>
