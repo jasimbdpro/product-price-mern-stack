@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const filter = require("leo-profanity");
+const bannedWords = require("./banned-words-base64.js").default;
+console.log(bannedWords);
+filter.add(bannedWords);
 
 dotenv.config();
 const MONGO_URI_DB_FIRST_TEST = process.env.MONGO_URI_DB_FIRST_TEST;

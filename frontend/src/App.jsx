@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react';
-import filter from 'leo-profanity'
-import bannedWords from './banned-words.js';
-
 function App() {
-
-  filter.addDictionary('bn', bannedWords)
-
 
   const [formData, setFormData] = useState({ productName: '', price: '' });
   const [gotData, setGotData] = useState([]);
@@ -148,7 +142,7 @@ function App() {
           {gotData.map((product) => (
             <tr key={product._id}>
 
-              <td>{filter.clean(product?.productName)}</td>
+              <td>{product?.productName}</td>
               <td>{product?.price}</td>
               <td>{product?._id}</td>
               <td>
