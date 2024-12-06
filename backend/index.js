@@ -7,14 +7,13 @@ const bannedWords = require("./banned-words-base64.js");
 filter.add(bannedWords);
 
 dotenv.config();
-const MONGO_URI_DB_FIRST_TEST = process.env.MONGO_URI_DB_FIRST_TEST;
-
+const URI = process.env.URI || "URI not loaded";
 const app = express();
 const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(MONGO_URI_DB_FIRST_TEST).then(() => {
+mongoose.connect(URI).then(() => {
   console.log("Connected to DB");
 });
 
