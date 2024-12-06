@@ -3,8 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const filter = require("leo-profanity");
-const bannedWords = require("./banned-words-base64.js").default;
-console.log(bannedWords);
+const bannedWords = require("./banned-words-base64.js");
 filter.add(bannedWords);
 
 dotenv.config();
@@ -30,7 +29,10 @@ app.post("/", async (req, res) => {
 
   try {
     // Create a new user instance
-    const newProduct = new ProductModel({ productName, price });
+    const newProduct = new ProductModel({
+      productName: filter.clean(productName),
+      price,
+    });
 
     // Save the user to the database
     await newProduct.save();
